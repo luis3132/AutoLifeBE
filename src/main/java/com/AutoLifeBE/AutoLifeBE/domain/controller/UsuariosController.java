@@ -42,13 +42,15 @@ public class UsuariosController {
     // add Usuario
     @PostMapping("/new")
     public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios){
-        if (usuariosservice.findUsuario(usuarios.getDni()).isPresent()){
+        if (!usuariosservice.findUsuario(usuarios.getDni()).isPresent()){
             Usuarios obj = usuariosservice.newUsuario(usuarios);
+            return new ResponseEntity<>(obj, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<>(obj, HttpStatus.OK);
     }
-    // Edit Usuarsios
-    @PutMapping("/")
+    // Edit Usuarios
+    @PutMapping("/edit")
     public ResponseEntity<Usuarios> editUsuarios(@RequestBody Usuarios usuarios){
         Optional<Usuarios> obj = usuariosservice.findUsuario(usuarios.getDni());
         if(obj.isPresent()){
@@ -66,7 +68,7 @@ public class UsuariosController {
         }
     }
     // delete Usuarios
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<Usuarios> deleteUsuarios(@PathVariable("id") String dni){
         Optional<Usuarios> obj = usuariosservice.findUsuario(dni);
         if (obj.isPresent()){
