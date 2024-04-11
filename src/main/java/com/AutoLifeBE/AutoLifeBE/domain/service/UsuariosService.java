@@ -61,5 +61,44 @@ public class UsuariosService implements IUsuariosService {
     public Optional<Usuarios> findUsuario(String dni) {
         return usuariosrepository.findById(dni);
     }
-    
+    /**
+     * verify the login
+     * @param email of the Usuario
+     * @param contrasena of the Usuario
+     * @return true if this user exist
+     */
+    @Override
+    public boolean loginEmail(String email, String contrasena) {
+        Optional<Usuarios> obj = findEmail(email);
+        return obj.get().getContrasena().equals(contrasena);
+    }
+    /**
+     * verify the login
+     * @param nombreUsuario of the Usuario
+     * @param contrasena of the Usuario
+     * @return true if this user exist
+     */
+    @Override
+    public boolean loginNombreUsuario(String nombreUsuario, String contrasena) {
+        Optional<Usuarios> obj = findNombreUsuario(nombreUsuario);
+        return obj.get().getContrasena().equals(contrasena);
+    }
+    /**
+     * verify if the nombreUsuario is unique
+     * @param nombreUsuario of the Usuario
+     * @return true if this is already exist
+     */
+    @Override
+    public Optional<Usuarios> findNombreUsuario(String nombreUsuario) {
+        return usuariosrepository.findNombreUsuario(nombreUsuario);
+    }
+    /**
+     * verify if the email is unique
+     * @param Email of the Usuario
+     * @return true if this is already exist
+     */
+    @Override
+    public Optional<Usuarios> findEmail(String Email) {
+        return usuariosrepository.findEmail(Email);
+    }
 }

@@ -1,6 +1,7 @@
 package com.AutoLifeBE.AutoLifeBE.persistence.entity;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -31,6 +32,9 @@ public class Usuarios{
     private String direccion;
     private String contrasena;
     private String email;
+    
+    @Column(name = "nombre_usuario")
+    private String nombreUsuario;
     
     @ManyToOne(optional = false)
     @JoinColumn(name = "roles", referencedColumnName = "id")

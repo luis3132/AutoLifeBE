@@ -13,4 +13,8 @@ public interface IUsuariosService {
     Usuarios newUsuario(Usuarios usuarios);
     Optional<Usuarios> findUsuario(String dni);
     boolean deleteUsuario(String dni);
+    boolean loginEmail(String email, String contrasena);
+    boolean loginNombreUsuario(String nombreUsuario, String contrasena);
+    Optional<Usuarios> findNombreUsuario(String nombreUsuario);
+    Optional<Usuarios> findEmail(String email);
 }
