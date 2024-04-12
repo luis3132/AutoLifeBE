@@ -2,14 +2,18 @@ package com.AutoLifeBE.AutoLifeBE.domain.service;
 
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.TipoVehiculo;
 import com.AutoLifeBE.AutoLifeBE.persistence.repository.TipoVehiculoRepository;
+import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Luis Andres Gonzalez Corzo
  */
+@Service
+@Transactional
 public class TipoVehiculoService implements ITipoVehiculoService {
     @Autowired
     private TipoVehiculoRepository tipovehiculorespository;
