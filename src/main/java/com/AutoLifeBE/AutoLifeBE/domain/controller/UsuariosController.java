@@ -93,7 +93,7 @@ public class UsuariosController {
         }
     }
     // Login Email
-    @GetMapping("/login/email")
+    @PostMapping("/login/email")
     public ResponseEntity<?> loginEmail(@RequestBody LoginDTO logindto){
         Map<String, Object> response = new HashMap<>();
         try {
@@ -117,7 +117,7 @@ public class UsuariosController {
         }
     }
     // Login nombreUsuario
-    @GetMapping("/login/nombreusuario")
+    @PostMapping("/login/nombreusuario")
     public ResponseEntity<?> loginUserName(@RequestBody LoginDTO logindto){
         Map<String, Object> response = new HashMap<>();
         try {
