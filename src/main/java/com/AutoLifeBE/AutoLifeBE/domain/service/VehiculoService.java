@@ -43,5 +43,10 @@ public class VehiculoService implements IVehiculoService{
             return false;
         }
     }
+
+    @Override
+    public List<Vehiculo> findUsuario(String usuario) {
+        return vehiculorepository.findUsuario(usuario);
+    }
     
 }

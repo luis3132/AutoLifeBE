@@ -40,6 +40,11 @@ public class VehiculoController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
+    @GetMapping("/list/usuario/{id}")
+    public List<Vehiculo> findByUsuario(@PathVariable("id") String usuario){
+        return vehiculoservice.findUsuario(usuario);
+    }
+    
     @PostMapping("/new")
     public ResponseEntity<Vehiculo> newVehiculo(@RequestBody Vehiculo vehiculo){
         if (!vehiculoservice.findVehiculo(vehiculo.getNumSerie()).isPresent()){

@@ -42,6 +42,13 @@ public class UsuariosController {
                 .map((Usuarios) -> new ResponseEntity<>(Usuarios, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    @GetMapping("/list/nombreusuario/{id}")
+    public ResponseEntity<Usuarios> findbyNombreUsuario(@PathVariable("id") String nombreusuario){
+        return usuariosservice.findNombreUsuario(nombreusuario)
+                .map((Usuarios) -> new ResponseEntity<>(Usuarios, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
     // add Usuario
     @PostMapping("/new")
     public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios){
