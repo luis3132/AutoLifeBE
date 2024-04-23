@@ -45,5 +45,8 @@ public class Vehiculo {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
     private List<Fotos> fotos;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
+    private List<Duenos> duenos;
 
 }
