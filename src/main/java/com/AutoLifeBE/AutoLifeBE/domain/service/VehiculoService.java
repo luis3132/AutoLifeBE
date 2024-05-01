@@ -48,5 +48,10 @@ public class VehiculoService implements IVehiculoService{
     public List<Vehiculo> findUsuario(String usuario) {
         return vehiculorepository.findUsuario(usuario);
     }
+
+    @Override
+    public List<Vehiculo> getPublicVehiculo(Boolean publico) {
+        return vehiculorepository.getPublico(publico);
+    }
     
 }

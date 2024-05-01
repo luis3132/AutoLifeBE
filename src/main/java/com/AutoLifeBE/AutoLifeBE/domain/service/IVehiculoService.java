@@ -14,4 +14,5 @@ public interface IVehiculoService {
     Optional<Vehiculo> findVehiculo(String num_serie);
     boolean deleteVehiculo(String num_serie);
     List<Vehiculo> findUsuario(String usuario);
+    List<Vehiculo> getPublicVehiculo(Boolean publico);
 }

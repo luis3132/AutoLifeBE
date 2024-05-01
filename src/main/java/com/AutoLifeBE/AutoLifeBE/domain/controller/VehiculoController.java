@@ -45,6 +45,11 @@ public class VehiculoController {
         return vehiculoservice.findUsuario(usuario);
     }
     
+    @GetMapping("/list/publico/{bl}")
+    public List<Vehiculo> findByUsuario(@PathVariable("bl") Boolean publico){
+        return vehiculoservice.getPublicVehiculo(publico);
+    }
+    
     @PostMapping("/new")
     public ResponseEntity<Vehiculo> newVehiculo(@RequestBody Vehiculo vehiculo){
         if (!vehiculoservice.findVehiculo(vehiculo.getNumSerie()).isPresent()){

@@ -14,4 +14,7 @@ import org.springframework.data.repository.query.Param;
 public interface VehiculoRepository extends JpaRepository<Vehiculo, String>{
     @Query("SELECT v FROM Vehiculo v WHERE v.usuario = :usuario")
     List<Vehiculo> findUsuario(@Param("usuario") String usuario);
+    
+    @Query("SELECT v FROM Vehiculo v WHERE v.publico = :publico")
+    List<Vehiculo> getPublico(@Param("publico") Boolean publico);
 }
