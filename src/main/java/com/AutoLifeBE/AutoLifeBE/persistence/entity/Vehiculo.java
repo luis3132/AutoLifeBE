@@ -34,6 +34,7 @@ public class Vehiculo {
     private String color;
     private Integer kilometraje;
     private Boolean publico;
+    private String descripcion;
     
     @Column(name = "ciudad_procedencia")
     private String ciudadProcedencia;
