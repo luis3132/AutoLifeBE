@@ -54,7 +54,7 @@ public class UsuariosController {
     public ResponseEntity<Usuarios> addUsuarios(@RequestBody Usuarios usuarios){
         boolean email = usuariosservice.findEmail(usuarios.getEmail()).isPresent();
         boolean nombreUsuario = usuariosservice.findNombreUsuario(usuarios.getNombreUsuario()).isPresent();
-        if (!usuariosservice.findUsuario(usuarios.getDni()).isPresent() && email && nombreUsuario){
+        if (usuariosservice.findUsuario(usuarios.getDni()).isPresent() || email || nombreUsuario){
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         } else {
             Usuarios obj = usuariosservice.newUsuario(usuarios);
