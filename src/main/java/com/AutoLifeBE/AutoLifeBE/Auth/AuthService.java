@@ -6,6 +6,9 @@ import com.AutoLifeBE.AutoLifeBE.jwt.JwtService;
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.Usuarios;
 import com.AutoLifeBE.AutoLifeBE.persistence.repository.UsuariosRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +23,16 @@ public class AuthService {
     private final UsuariosRepository usuariosRepository;
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authenticationManager;
     
     public AuthResponse login(LoginDTO request){
-        return null;
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUserLogin(),request.getContrasena()));
+        UserDetails user = usuariosRepository.findNombreUsuario(request.getUserLogin()).orElseThrow();
+        String token = jwtService.getToken(user);
+        
+        return AuthResponse.builder()
+                .token(token)
+                .build();
     }
     
     public AuthResponse register(RegisterDTO request){
@@ -32,7 +42,7 @@ public class AuthService {
                 .apellidos(request.getApellidos())
                 .direccion(request.getDireccion())
                 .email(request.getEmail())
-                .contrasena(request.getContrasena())
+                .contrasena(passwordEncoder.encode(request.getContrasena()))
                 .nombreUsuario(request.getNombreUsuario())
                 .telefono(request.getTelefono())
                 .roles(request.getRoles())

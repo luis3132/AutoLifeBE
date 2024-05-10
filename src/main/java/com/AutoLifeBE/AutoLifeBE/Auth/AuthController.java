@@ -3,7 +3,9 @@ package com.AutoLifeBE.AutoLifeBE.Auth;
 import com.AutoLifeBE.AutoLifeBE.domain.dto.LoginDTO;
 import com.AutoLifeBE.AutoLifeBE.domain.dto.RegisterDTO;
 import com.AutoLifeBE.AutoLifeBE.domain.service.VehiculoService;
+import com.AutoLifeBE.AutoLifeBE.jwt.JwtService;
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.Vehiculo;
+import io.jsonwebtoken.Claims;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,19 +31,27 @@ public class AuthController {
     private VehiculoService vehiculoservice;
     @Autowired
     private final AuthService authService;
+    @Autowired
+    private final JwtService jwtService;
     
     @GetMapping("/vehiculo/list/publico/{bl}")
     public List<Vehiculo> findByUsuario(@PathVariable("bl") Boolean publico){
         return vehiculoservice.getPublicVehiculo(publico);
     }
     
-    @PostMapping(value = "login")
+    @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginDTO login){
         return ResponseEntity.ok(authService.login(login));
     }
     
-    @PostMapping(value = "register")
+    @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterDTO registerDTO){
         return ResponseEntity.ok(authService.register(registerDTO));
+    }
+    
+    @PostMapping("/verify")
+    public LoginDTO verify(@RequestBody AuthResponse authResponse){
+        LoginDTO loginDTO = new LoginDTO(jwtService.getClaim(authResponse.getToken(), Claims::getSubject), "Encrypted");
+        return loginDTO;
     }
 }

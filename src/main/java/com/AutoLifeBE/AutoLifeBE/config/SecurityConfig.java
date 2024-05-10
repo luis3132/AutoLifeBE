@@ -19,32 +19,25 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
-    
+
     private final JwtAuthenticationFilter authenticationFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) {
-        try {
-            return http
-                    .csrf(csrf
-                            -> csrf.disable())
-                    .authorizeHttpRequests(authRequest
-                            -> authRequest
-                            .requestMatchers("/auth/**").permitAll()
-                            .anyRequest().authenticated())
-                    .sessionManagement(sessionManager->
-                            sessionManager
-                            .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                    .authenticationProvider(authenticationProvider)
-                    .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                    .build();
-        } catch (Exception e) {
-            // Manejar la excepción aquí
-            e.printStackTrace(); // O cualquier otra acción que desees realizar
-            // Retornar algo apropiado en caso de error, o lanzar otra excepción
-            return null;
-        }
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(csrf
+                        -> csrf.disable())
+                .authorizeHttpRequests(authRequest
+                        -> authRequest
+                        .requestMatchers("/auth/**").permitAll()
+                        .anyRequest().authenticated())
+                .sessionManagement(sessionManager
+                        -> sessionManager
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .authenticationProvider(authenticationProvider)
+                .addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
     }
 
 }
