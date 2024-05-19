@@ -1,5 +1,6 @@
 package com.AutoLifeBE.AutoLifeBE.domain.service;
 
+import com.AutoLifeBE.AutoLifeBE.domain.dto.DuenosDTO;
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.Duenos;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public interface IDuenosService {
     List<Duenos> getDuenos();
     Duenos newDuenos(Duenos duenos);
+    void newDuenosSID(DuenosDTO duenos);
     Optional<List<Duenos>> findDuenosByIdUsuario(String usuario);
     Optional<List<Duenos>> findDuenosByIdVehiculo(String vehiculo);
     Optional<Duenos> findDueno(Long id);

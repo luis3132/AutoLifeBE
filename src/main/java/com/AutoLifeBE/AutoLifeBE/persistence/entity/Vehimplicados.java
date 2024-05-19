@@ -6,12 +6,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
 /**
  *
  * @author Luis Andres Gonzalez Corzo
  */
 @Entity
+@Data
 @Table(name = "vehimplicados")
 public class Vehimplicados {
     @EmbeddedId
@@ -30,29 +32,5 @@ public class Vehimplicados {
     @ManyToOne
     @JoinColumn(name = "num_serie", insertable = false, updatable = false)
     private Vehiculo vehiculo;
-
-    public VehimplicadosPK getId() {
-        return id;
-    }
-
-    public void setId(VehimplicadosPK id) {
-        this.id = id;
-    }
-
-    public String getPiezasAfectadas() {
-        return piezasAfectadas;
-    }
-
-    public void setPiezasAfectadas(String piezasAfectadas) {
-        this.piezasAfectadas = piezasAfectadas;
-    }
-
-    public Double getCostoestimadoreparacion() {
-        return costoestimadoreparacion;
-    }
-
-    public void setCostoestimadoreparacion(Double costoestimadoreparacion) {
-        this.costoestimadoreparacion = costoestimadoreparacion;
-    }
     
 }

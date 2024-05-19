@@ -1,5 +1,6 @@
 package com.AutoLifeBE.AutoLifeBE.domain.service;
 
+import com.AutoLifeBE.AutoLifeBE.domain.dto.DuenosDTO;
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.Duenos;
 import com.AutoLifeBE.AutoLifeBE.persistence.repository.DuenosRepository;
 import jakarta.transaction.Transactional;
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 @Transactional
-public class DuenosService  implements IDuenosService{
-    
+public class DuenosService implements IDuenosService {
+
     @Autowired
     private DuenosRepository duenosrepository;
 
@@ -41,7 +42,7 @@ public class DuenosService  implements IDuenosService{
 
     @Override
     public boolean deleteDuenos(Long id) {
-        if (findDueno(id).isPresent()){
+        if (findDueno(id).isPresent()) {
             duenosrepository.deleteById(id);
             return true;
         } else {
@@ -53,6 +54,10 @@ public class DuenosService  implements IDuenosService{
     public Optional<Duenos> findDueno(Long id) {
         return duenosrepository.findById(id);
     }
-    
-   
+
+    @Override
+    public void newDuenosSID(DuenosDTO duenos) {
+        duenosrepository.saveSID(duenos.getUsuario(), duenos.getVehiculo(), duenos.getKmStart(), duenos.getKmFinish(), duenos.getDateStart(), duenos.getDateFinish(), duenos.getCiudadPromTransi());
+    }
+
 }
