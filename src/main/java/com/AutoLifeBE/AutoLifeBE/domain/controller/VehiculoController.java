@@ -75,8 +75,10 @@ public class VehiculoController {
             obj.get().setSerie(vehiculo.getSerie());
             obj.get().setTipovehiculo(vehiculo.getTipovehiculo());
             obj.get().setUsuario(vehiculo.getUsuario());
+            obj.get().setDescripcion(vehiculo.getDescripcion());
+            obj.get().setPublico(vehiculo.getPublico());
             vehiculoservice.newVehiculo(obj.get());
-            return new ResponseEntity<>(obj.get(), HttpStatus.ACCEPTED);
+            return new ResponseEntity<>(obj.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
