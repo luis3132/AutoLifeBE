@@ -163,7 +163,7 @@ CREATE TABLE fotos (
 	constraint fotos_fk_2 foreign key (reparacion) references reparacion (id),
 	constraint fotos_fk_3 foreign key (mantenimiento) references mantenimiento (id),
 	constraint fotos_fk_4 foreign key (accidentes) references accidentes (id),
-	constraint fotos_fk_5 foreign key (usuario) references usuarios (dni),
+	constraint fotos_fk_5 foreign key (usuarios) references usuarios (dni),
 	constraint fotos_fk_6 foreign key (soat) references soat (id),
 	constraint fotos_fk_7 foreign key (seguro) references seguro (id),
 	constraint fotos_fk_8 foreign key (tecnicomecanica) references tecnicomecanica (id)
@@ -194,6 +194,8 @@ ALTER TABLE AutoLife.fotos DROP FOREIGN KEY fotos_fk_5;
 ALTER TABLE AutoLife.fotos ADD CONSTRAINT fotos_fk_5 FOREIGN KEY (usuarios) REFERENCES AutoLife.usuarios(dni) ON DELETE CASCADE ON UPDATE RESTRICT;
 ALTER TABLE AutoLife.fotos DROP FOREIGN KEY fotos_fk;
 ALTER TABLE AutoLife.fotos ADD CONSTRAINT fotos_fk FOREIGN KEY (vehiculo) REFERENCES AutoLife.vehiculo(num_serie) ON DELETE CASCADE ON UPDATE RESTRICT;
+ALTER TABLE AutoLife.fotos MODIFY COLUMN id varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+ALTER TABLE AutoLife.fotos MODIFY COLUMN foto varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
 
 
 
