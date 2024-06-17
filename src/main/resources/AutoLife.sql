@@ -196,6 +196,10 @@ ALTER TABLE AutoLife.fotos DROP FOREIGN KEY fotos_fk;
 ALTER TABLE AutoLife.fotos ADD CONSTRAINT fotos_fk FOREIGN KEY (vehiculo) REFERENCES AutoLife.vehiculo(num_serie) ON DELETE CASCADE ON UPDATE RESTRICT;
 ALTER TABLE AutoLife.fotos MODIFY COLUMN id varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
 ALTER TABLE AutoLife.fotos MODIFY COLUMN foto varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL;
+ALTER TABLE AutoLife.accidentes ADD publico TINYINT(1) NOT NULL;
+
+
+
 
 
 
