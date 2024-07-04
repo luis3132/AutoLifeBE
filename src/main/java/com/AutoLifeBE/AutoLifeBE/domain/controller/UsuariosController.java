@@ -70,14 +70,12 @@ public class UsuariosController {
         if (!email && !nombreUsuario) {
             if(obj.isPresent()){
                 obj.get().setApellidos(usuarios.getApellidos());
-                obj.get().setContrasena(usuarios.getContrasena());
                 obj.get().setDireccion(usuarios.getDireccion());
                 obj.get().setDni(usuarios.getDni());
                 obj.get().setEmail(usuarios.getEmail());
                 obj.get().setNombre(usuarios.getNombre());
                 obj.get().setTelefono(usuarios.getTelefono());
                 obj.get().setRoles(usuarios.getRoles());
-                obj.get().setContrasena(usuarios.getContrasena());
                 obj.get().setNombreUsuario(usuarios.getNombreUsuario());
                 usuariosservice.newUsuario(obj.get());
                 return new ResponseEntity<>(obj.get(), HttpStatus.OK);
