@@ -24,7 +24,7 @@ public class SoatService implements ISoatService {
     }
 
     @Override
-    public boolean deleteSoat(Long id) {
+    public boolean deleteSoat(String id) {
         if (findSoat(id).isPresent()) {
             soatRepository.deleteById(id);
             return true;
@@ -34,7 +34,7 @@ public class SoatService implements ISoatService {
     }
 
     @Override
-    public Optional<Soat> findSoat(Long id) {
+    public Optional<Soat> findSoat(String id) {
         return soatRepository.findById(id);
     }
 

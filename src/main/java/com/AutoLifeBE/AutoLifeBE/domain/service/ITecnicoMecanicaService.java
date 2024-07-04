@@ -9,6 +9,6 @@ import java.util.Optional;
  */
 public interface ITecnicoMecanicaService {
     TecnicoMecanica newTecnicoMecanica(TecnicoMecanica tecnicoMecanica);
-    boolean deleteTecnicoMecanica(Long id);
-    Optional<TecnicoMecanica> findTecnicoMecanica(Long id);
+    boolean deleteTecnicoMecanica(String id);
+    Optional<TecnicoMecanica> findTecnicoMecanica(String id);
 }

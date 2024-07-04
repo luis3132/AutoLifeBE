@@ -9,6 +9,6 @@ import java.util.Optional;
  */
 public interface ISoatService {
     Soat newSoatSID(Soat soat);
-    boolean deleteSoat(Long id);
-    Optional<Soat> findSoat(Long id);
+    boolean deleteSoat(String id);
+    Optional<Soat> findSoat(String id);
 }

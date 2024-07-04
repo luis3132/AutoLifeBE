@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Luis Andres Gonzalez Corzo
  */
-public interface SeguroRepository extends JpaRepository<Seguro, Long>{
+public interface SeguroRepository extends JpaRepository<Seguro, String>{
     
 }

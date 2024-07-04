@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Luis Andres Gonzalez Corzo
  */
-public interface SoatRepository extends JpaRepository<Soat, Long>{
+public interface SoatRepository extends JpaRepository<Soat, String>{
 
 }

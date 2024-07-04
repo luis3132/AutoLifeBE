@@ -34,14 +34,14 @@ public class SoatController {
     }
     
     @GetMapping("/list/{id}")
-    public ResponseEntity<Soat> findById(@PathVariable("id") Long id){
+    public ResponseEntity<Soat> findById(@PathVariable("id") String id){
         return soatService.findSoat(id)
                 .map((Soat) -> new ResponseEntity<>(Soat, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Soat> deleteById(@PathVariable("id") Long id){
+    public ResponseEntity<Soat> deleteById(@PathVariable("id") String id){
         Optional<Soat> obj = soatService.findSoat(id);
         if (obj.isPresent()){
             soatService.deleteSoat(id);

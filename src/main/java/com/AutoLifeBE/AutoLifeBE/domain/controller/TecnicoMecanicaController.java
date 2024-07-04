@@ -34,14 +34,14 @@ public class TecnicoMecanicaController {
     }
     
     @GetMapping("/list/{id}")
-    public ResponseEntity<TecnicoMecanica> findByID(@PathVariable("id") Long id){
+    public ResponseEntity<TecnicoMecanica> findByID(@PathVariable("id") String id){
         return tecnicoMecanicaService.findTecnicoMecanica(id)
                 .map((TecnicoMecanica) -> new ResponseEntity<>(TecnicoMecanica, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<TecnicoMecanica> deleteTecnicoMecanica(@PathVariable("id") Long id){
+    public ResponseEntity<TecnicoMecanica> deleteTecnicoMecanica(@PathVariable("id") String id){
         Optional<TecnicoMecanica> obj = tecnicoMecanicaService.findTecnicoMecanica(id);
         if (obj.isPresent()){
             tecnicoMecanicaService.deleteTecnicoMecanica(id);

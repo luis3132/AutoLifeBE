@@ -19,7 +19,7 @@ public class TecnicoMecanicaService implements ITecnicoMecanicaService {
     private TecnicoMecanicaRepository tecnicoMecanicaRepository;
 
     @Override
-    public boolean deleteTecnicoMecanica(Long id) {
+    public boolean deleteTecnicoMecanica(String id) {
         if (findTecnicoMecanica(id).isPresent()) {
             tecnicoMecanicaRepository.deleteById(id);
             return true;
@@ -29,7 +29,7 @@ public class TecnicoMecanicaService implements ITecnicoMecanicaService {
     }
 
     @Override
-    public Optional<TecnicoMecanica> findTecnicoMecanica(Long id) {
+    public Optional<TecnicoMecanica> findTecnicoMecanica(String id) {
         return tecnicoMecanicaRepository.findById(id);
     }
 

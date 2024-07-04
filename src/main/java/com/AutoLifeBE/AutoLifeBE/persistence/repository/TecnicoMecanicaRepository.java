@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  *
  * @author Luis Andres Gonzalez Corzo
  */
-public interface TecnicoMecanicaRepository extends JpaRepository<TecnicoMecanica, Long>{
+public interface TecnicoMecanicaRepository extends JpaRepository<TecnicoMecanica, String>{
     
 }

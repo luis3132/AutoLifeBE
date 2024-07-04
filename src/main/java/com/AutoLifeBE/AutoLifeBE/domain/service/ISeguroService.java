@@ -9,6 +9,6 @@ import java.util.Optional;
  */
 public interface ISeguroService {
     Seguro newSeguro(Seguro seguro);
-    boolean deleteSeguro(Long id);
-    Optional<Seguro> findSeguro(Long id);
+    boolean deleteSeguro(String id);
+    Optional<Seguro> findSeguro(String id);
 }

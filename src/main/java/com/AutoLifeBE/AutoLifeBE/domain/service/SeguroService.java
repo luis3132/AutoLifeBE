@@ -19,7 +19,7 @@ public class SeguroService implements ISeguroService {
     private SeguroRepository seguroRepository;
 
     @Override
-    public boolean deleteSeguro(Long id) {
+    public boolean deleteSeguro(String id) {
         if (findSeguro(id).isPresent()) {
             seguroRepository.deleteById(id);
             return true;
@@ -29,7 +29,7 @@ public class SeguroService implements ISeguroService {
     }
 
     @Override
-    public Optional<Seguro> findSeguro(Long id) {
+    public Optional<Seguro> findSeguro(String id) {
         return seguroRepository.findById(id);
     }
 

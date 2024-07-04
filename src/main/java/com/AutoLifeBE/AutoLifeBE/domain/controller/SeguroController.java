@@ -34,14 +34,14 @@ public class SeguroController {
     }
     
     @GetMapping("/list/{id}")
-    public ResponseEntity<Seguro> findById(@PathVariable("id") Long id){
+    public ResponseEntity<Seguro> findById(@PathVariable("id") String id){
         return seguroService.findSeguro(id)
                 .map((Seguro) -> new ResponseEntity<>(Seguro, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Seguro> deleteById(@PathVariable("id") Long id){
+    public ResponseEntity<Seguro> deleteById(@PathVariable("id") String id){
         Optional<Seguro> obj = seguroService.findSeguro(id);
         if (obj.isPresent()){
             seguroService.deleteSeguro(id);
