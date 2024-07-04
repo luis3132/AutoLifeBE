@@ -11,17 +11,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Luis Andres Gonzalez Corzo
  */
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "mantenimiento")
 public class Mantenimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     
     @Column(name = "fechamantenimiento")
     private Date fechaMantenimiento;
@@ -54,61 +60,5 @@ public class Mantenimiento {
     
     @OneToMany(mappedBy = "mantenimiento")
     private List<Fotos> fotos;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getFechaMantenimiento() {
-        return fechaMantenimiento;
-    }
-
-    public void setFechaMantenimiento(Date fechaMantenimiento) {
-        this.fechaMantenimiento = fechaMantenimiento;
-    }
-
-    public Date getFechaAproxMantenimiento() {
-        return fechaAproxMantenimiento;
-    }
-
-    public void setFechaAproxMantenimiento(Date fechaAproxMantenimiento) {
-        this.fechaAproxMantenimiento = fechaAproxMantenimiento;
-    }
-
-    public String getTipoMantenimiento() {
-        return tipoMantenimiento;
-    }
-
-    public void setTipoMantenimiento(String tipoMantenimiento) {
-        this.tipoMantenimiento = tipoMantenimiento;
-    }
-
-    public Double getCostoMantenimiento() {
-        return costoMantenimiento;
-    }
-
-    public void setCostoMantenimiento(Double costoMantenimiento) {
-        this.costoMantenimiento = costoMantenimiento;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getKilometraje() {
-        return kilometraje;
-    }
-
-    public void setKilometraje(Integer kilometraje) {
-        this.kilometraje = kilometraje;
-    }
     
 }

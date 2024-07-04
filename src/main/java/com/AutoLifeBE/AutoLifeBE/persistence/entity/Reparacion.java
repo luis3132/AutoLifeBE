@@ -11,17 +11,23 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.Date;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *
  * @author Luis Andres Gonzalez
  */
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "reparacion")
 public class Reparacion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
     
     @Column(name = "fechareparacion")
     private Date fechaReparacion;
@@ -48,55 +54,6 @@ public class Reparacion {
     private List<Piezas> piezas;
     
     @OneToMany(mappedBy = "reparacion")
-    private List<Fotos> fotos;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getFechaReparacion() {
-        return fechaReparacion;
-    }
-
-    public void setFechaReparacion(Date fechaReparacion) {
-        this.fechaReparacion = fechaReparacion;
-    }
-
-    public String getTipoReparacion() {
-        return tipoReparacion;
-    }
-
-    public void setTipoReparacion(String tipoReparacion) {
-        this.tipoReparacion = tipoReparacion;
-    }
-
-    public Double getCostoReparacion() {
-        return costoReparacion;
-    }
-
-    public void setCostoReparacion(Double costoReparacion) {
-        this.costoReparacion = costoReparacion;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public Integer getKilometraje() {
-        return kilometraje;
-    }
-
-    public void setKilometraje(Integer kilometraje) {
-        this.kilometraje = kilometraje;
-    }
-    
+    private List<Fotos> fotos;   
     
 }

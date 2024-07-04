@@ -50,7 +50,7 @@ CREATE TABLE duenos (
 	constraint duenos_fk_1 foreign key (vehiculo) references vehiculo (num_serie)
 );
 CREATE TABLE seguro (
-	id bigint not null auto_increment,
+	id varchar(250) not null,
 	descripcion varchar(100),
 	datestart date not null,
 	datefinish date not null,
@@ -59,7 +59,7 @@ CREATE TABLE seguro (
 	constraint seguro_fk foreign key (vehiculo) references vehiculo (num_serie)
 );
 CREATE TABLE soat (
-	id bigint not null auto_increment,
+	id varchar(250) not null,
 	descripcion varchar(100),
 	datestart date not null,
 	datefinish date not null,
@@ -68,7 +68,7 @@ CREATE TABLE soat (
 	constraint soat_fk foreign key (vehiculo) references vehiculo (num_serie)
 );
 CREATE TABLE tecnicomecanica (
-	id bigint not null auto_increment,
+	id varchar(250) not null,
 	descripcion varchar(100),
 	kilometraje int not null,
 	datestart date not null,
@@ -78,7 +78,7 @@ CREATE TABLE tecnicomecanica (
 	constraint tecnicomecanica_fk foreign key (vehiculo) references vehiculo (num_serie)
 );
 CREATE TABLE accidentes (
-	id bigint not null auto_increment,
+	id varchar(250) not null,
 	fechaaccidente date not null,
 	descripcion varchar(300),
 	coordenadas varchar(20),
@@ -86,7 +86,7 @@ CREATE TABLE accidentes (
 	primary key (id)
 );
 CREATE TABLE vehimplicados (
-	accidentes bigint,
+	accidentes varchar(250),
 	vehiculo varchar(200),
 	piezas_afectadas varchar(1500),
 	costoestimadoreparacion double,
@@ -95,7 +95,7 @@ CREATE TABLE vehimplicados (
 	constraint vehimplicados_fk_1 foreign key (vehiculo) references vehiculo (num_serie)
 );
 CREATE TABLE mantenimiento (
-	id bigint not null auto_increment,
+	id varchar(300) not null,
 	fechamantenimiento date not null,
 	fechaaproxmantenimiento date,
 	tipomantenimiento varchar(50),
@@ -103,26 +103,26 @@ CREATE TABLE mantenimiento (
 	descripcion varchar(500),
 	kilometraje int,
 	vehiculo varchar(200),
-	tecnicomecanica bigint,
+	tecnicomecanica varchar(250),
 	primary key (id),
 	constraint mantenimiento_fk foreign key (vehiculo) references vehiculo (num_serie),
 	constraint mantenimiento_fk_1 foreign key (tecnicomecanica) references tecnicomecanica (id)
 );
 CREATE TABLE reparacion (
-	id bigint not null auto_increment,
+	id varchar(300) not null,
 	fechareparacion date not null,
 	tiporeparacion varchar(50),
 	costoreparacion double,
 	descripcion varchar(500),
 	kilometraje int,
 	vehiculo varchar(200),
-	tecnicomecanica bigint,
+	tecnicomecanica varchar(250),
 	primary key (id),
 	constraint reparacion_fk foreign key (vehiculo) references vehiculo (num_serie),
 	constraint reparacion_fk_1 foreign key (tecnicomecanica) references tecnicomecanica (id)
 );
 CREATE TABLE modificacion (
-	id bigint not null auto_increment,
+	id varchar(300) not null,
 	fechamodificacion date not null,
 	tipomodificacion varchar(50),
 	costomodificaion double,
@@ -135,9 +135,9 @@ CREATE TABLE modificacion (
 CREATE TABLE piezas (
 	id varchar(150) not null,
 	pieza bigint not null,
-	mantenimiento bigint,
-	reparacion bigint,
-	modificacion bigint,
+	mantenimiento varchar(300),
+	reparacion varchar(300),
+	modificacion varchar(300),
 	primary key (id),
 	constraint piezas_fk foreign key (mantenimiento) references mantenimiento (id),
 	constraint piezas_fk_1 foreign key (reparacion) references reparacion (id),
@@ -147,14 +147,14 @@ CREATE TABLE fotos (
 	id varchar(500) not null,
 	foto varchar(200) not null,
 	vehiculo varchar(200),
-	modificacion bigint,
-	reparacion bigint,
-	mantenimiento bigint,
-	accidentes bigint,
+	modificacion varchar(300),
+	reparacion varchar(300),
+	mantenimiento varchar(300),
+	accidentes varchar(250),
 	usuarios varchar(20),
-	soat bigint,
-	seguro bigint,
-	tecnicomecanica bigint,
+	soat varchar(250),
+	seguro varchar(250),
+	tecnicomecanica varchar(250),
 	piezas bigint,
 	partes bigint,
 	primary key (id),
@@ -204,3 +204,71 @@ ALTER TABLE AutoLife.accidentes ADD publico TINYINT(1) NOT NULL;
 
 
 
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('sedan', 'Vehículo de turismo con carrocería de tres volúmenes: motor, habitáculo y maletero');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('pickup', 'Vehículo con cabina cerrada y área de carga abierta');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('SUV', 'Vehículo utilitario deportivo con características de todoterreno');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('coupe', 'Vehículo de dos puertas y techo inclinado, generalmente deportivo');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('hatchback', 'Vehículo con puerta trasera que se abre hacia arriba para acceder al maletero');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('convertible', 'Vehículo con un techo plegable o desmontable');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('minivan', 'Vehículo grande y espacioso, ideal para familias');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('van', 'Vehículo grande utilizado para transporte de mercancías o pasajeros');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('wagon', 'Vehículo con un área de carga extendida y una puerta trasera');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('crossover', 'Vehículo que combina características de SUV y coche compacto');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('roadster', 'Vehículo deportivo de dos asientos y techo descubierto');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('electric', 'Vehículo propulsado por uno o más motores eléctricos');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('hybrid', 'Vehículo que combina un motor de combustión interna con uno o más motores eléctricos');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('luxury', 'Vehículo de alta gama con características premium y mayor confort');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('sports car', 'Vehículo diseñado para altas prestaciones y velocidad');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('compact', 'Vehículo de tamaño reducido, ideal para ciudad');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('Motocicleta', 'Vehículo de dos ruedas motorizado');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('ATV', 'Vehículo todo terreno utilizado para actividades recreativas o laborales');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('bus', 'Vehículo grande diseñado para transportar muchos pasajeros');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('truck', 'Vehículo diseñado para transportar mercancías pesadas');
+
+INSERT INTO AutoLife.tipovehiculo (nombre, descripcion)
+VALUES('limousine', 'Vehículo de lujo con un compartimento separado para el conductor y pasajeros');
+
+INSERT INTO AutoLife.roles (rol)
+VALUES('Admin');
+
+INSERT INTO AutoLife.roles (rol)
+VALUES('User');

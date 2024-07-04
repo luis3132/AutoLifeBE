@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class VehimplicadosPK implements Serializable {
     @Column(name = "accidentes")
-    private Long accidentes;
+    private String accidentes;
     
     @Column(name = "vehiculo")
     private String vehiculo;

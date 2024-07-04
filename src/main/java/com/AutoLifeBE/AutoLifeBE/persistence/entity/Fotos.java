@@ -24,12 +24,12 @@ public class Fotos {
     private Long piezas;
     private Long partes;
     private String vehiculo;
-    private Long modificacion;
-    private Long reparacion;
-    private Long mantenimiento;
-    private Long accidentes;
+    private String modificacion;
+    private String reparacion;
+    private String mantenimiento;
+    private String accidentes;
     private String usuarios;
-    private Long soat;
-    private Long seguro;
-    private Long tecnicomecanica;
+    private String soat;
+    private String seguro;
+    private String tecnicomecanica;
 }

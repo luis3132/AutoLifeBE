@@ -50,5 +50,14 @@ public class Vehiculo {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
     private List<Duenos> duenos;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
+    private List<Seguro> seguro;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
+    private List<Soat> soat;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
+    private List<TecnicoMecanica> tecnicoMecanica;
 
 }
