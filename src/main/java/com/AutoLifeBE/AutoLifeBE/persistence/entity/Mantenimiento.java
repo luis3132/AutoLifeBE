@@ -47,9 +47,8 @@ public class Mantenimiento {
     @Column(name = "kilometraje")
     private Integer kilometraje;
     
-    @ManyToOne
-    @JoinColumn(name = "num_serie", insertable = false, updatable = false)
-    private Vehiculo vehiculo;
+    @Column(name = "vehiculo")
+    private String vehiculo;
     
     @ManyToOne
     @JoinColumn(name = "id", insertable = false, updatable = false)

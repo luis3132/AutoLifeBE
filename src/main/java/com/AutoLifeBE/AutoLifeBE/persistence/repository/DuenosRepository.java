@@ -1,6 +1,5 @@
 package com.AutoLifeBE.AutoLifeBE.persistence.repository;
 
-import com.AutoLifeBE.AutoLifeBE.domain.dto.DuenosDTO;
 import com.AutoLifeBE.AutoLifeBE.persistence.entity.Duenos;
 import java.util.Date;
 import java.util.List;
