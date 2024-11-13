@@ -46,8 +46,4 @@ public class Servicios {
     @JsonBackReference("vehiculo-servicios")
     private Vehiculo vehiculo;
 
-    @ManyToOne
-    @JoinColumn(name = "servicios", referencedColumnName = "id")
-    @Column(name = "tecnico_mecanica")
-    private Servicios tecnicoMecanica;
 }

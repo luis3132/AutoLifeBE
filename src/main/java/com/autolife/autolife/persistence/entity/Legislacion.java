@@ -47,7 +47,6 @@ public class Legislacion {
     private int kilometraje;
 
     @ManyToOne
-    @Column(name = "tipo_legislacion")
     @JoinColumn(name = "tipo_legislacion", referencedColumnName = "id")
     private TipoLegislacion tipoLegislacion;
 }

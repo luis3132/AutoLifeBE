@@ -54,7 +54,7 @@ CREATE TABLE duenos (
 );
 CREATE TABLE tipo_legislacion (
 	id int not null auto_increment,
-	legislacion varchar(10) not null,
+	legislacion varchar(20) not null,
 	constraint tipo_legislacion_pk primary key (id)
 );
 CREATE TABLE legislacion (
@@ -89,7 +89,7 @@ CREATE TABLE vehiculos_implicados (
 );
 CREATE TABLE tipo_servicio (
 	id int not null auto_increment,
-	servicio varchar(10) not null,
+	servicio varchar(20) not null,
 	constraint tipo_servicio_pk primary key (id)
 );
 CREATE TABLE servicios (
@@ -101,11 +101,9 @@ CREATE TABLE servicios (
 	descripcion varchar(500),
 	kilometraje int not null,
 	vehiculo varchar(30) not null,
-	tecnico_mecanica BigInt,
 	constraint servicios_pk primary key (id),
 	constraint servicios_fk foreign key (tecnico_mecanica) references servicios (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
-	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION,
-	constraint servicios_fk_2 foreign key (tipo_servicio) references tipo_servicio (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 CREATE TABLE piezas (
 	id varchar(150) not null,
@@ -133,11 +131,27 @@ CREATE TABLE fotos (
 );
 
 
-ALTER TABLE tipo_vehiculo AUTO_INCREMENT = 5;
+# ALTER TABLE tipo_vehiculo AUTO_INCREMENT = 5;
 
 
 
+INSERT INTO AutoLife.tipo_servicio (servicio)
+VALUES('Mantenimiento');
 
+INSERT INTO AutoLife.tipo_servicio (servicio)
+VALUES('Modificacion');
+
+INSERT INTO AutoLife.tipo_servicio (servicio)
+VALUES('Reparacion');
+
+INSERT INTO AutoLife.tipo_legislacion (legislacion)
+VALUES('SOAT');
+
+INSERT INTO AutoLife.tipo_legislacion (legislacion)
+VALUES('Tecnico Mecanica');
+
+INSERT INTO AutoLife.tipo_legislacion (legislacion)
+VALUES('Seguro');
 
 INSERT INTO AutoLife.tipo_vehiculo (nombre, descripcion)
 VALUES('sedan', 'Vehículo de turismo con carrocería de tres volúmenes: motor, habitáculo y maletero');
@@ -207,3 +221,6 @@ VALUES('Admin');
 
 INSERT INTO AutoLife.roles (rol)
 VALUES('User');
+
+INSERT INTO AutoLife.roles (rol)
+VALUES('Taller');

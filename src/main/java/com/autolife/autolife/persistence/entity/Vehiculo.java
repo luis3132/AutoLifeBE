@@ -34,7 +34,6 @@ public class Vehiculo {
 
     @ManyToOne
     @JoinColumn(name = "tipo_vehiculo", referencedColumnName = "id")
-    @Column(name = "tipo_vehiculo")
     private TipoVehiculo tipoVehiculo;
 
     private String marca;
