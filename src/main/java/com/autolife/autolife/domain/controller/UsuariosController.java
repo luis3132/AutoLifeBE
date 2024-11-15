@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +28,11 @@ public class UsuariosController {
     @GetMapping("/list/{dni}")
     public ResponseEntity<Usuarios> findUsuario(@PathParam("dni") String dni) {
         return ResponseEntity.ok(usuarioService.findByUsuario(dni).get());
+    }
+
+    @GetMapping("/list/nombreusuario/{nombreUsuario}")
+    public ResponseEntity<Usuarios> findUsuarioByNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
+        return ResponseEntity.ok(usuarioService.findByNombreUsuarioUserData(nombreUsuario).get());
     }
 
     @PutMapping("/update")

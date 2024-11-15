@@ -48,6 +48,11 @@ public class UsuariosService implements IUsuarioService {
     }
 
     @Override
+    public Optional<Usuarios> findByNombreUsuarioUserData(String nombreUsuario) {
+        return usuarioRepository.findByNombreUsuario(nombreUsuario);
+    }
+
+    @Override
     public Usuarios save(UsuarioNuevo usuario) {
         return usuarioRepository.save(convertDTOtoEntity(usuario));
     }
