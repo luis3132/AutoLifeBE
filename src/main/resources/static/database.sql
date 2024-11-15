@@ -217,10 +217,10 @@ INSERT INTO AutoLife.tipo_vehiculo (nombre, descripcion)
 VALUES('limousine', 'Vehículo de lujo con un compartimento separado para el conductor y pasajeros');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('Admin');
+VALUES('ADMIN');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('User');
+VALUES('USER');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('Taller');
+VALUES('TALLER');

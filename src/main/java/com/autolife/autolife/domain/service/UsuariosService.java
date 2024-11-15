@@ -1,8 +1,14 @@
 package com.autolife.autolife.domain.service;
 
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.autolife.autolife.domain.dto.UsuarioNuevo;
@@ -27,6 +33,23 @@ public class UsuariosService implements IUsuarioService {
     @Override
     public Optional<Usuarios> findByUsuario(String dni) {
         return usuarioRepository.findById(dni);
+    }
+
+    @Override
+    public UserDetails findByNombreUsuario(String nombreUsuario) throws UsernameNotFoundException {
+        Usuarios usuario = usuarioRepository.findByNombreUsuario(nombreUsuario)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        GrantedAuthority authority = new SimpleGrantedAuthority(usuario.getRoles().getRol());
+
+        Set<GrantedAuthority> authorities = Set.of(authority);
+
+        return new User(usuario.getNombreUsuario(), usuario.getContrasena(), authorities);
+    }
+
+    @Override
+    public Optional<Usuarios> findByNombreUsuarioUserData(String nombreUsuario) {
+        return usuarioRepository.findByNombreUsuario(nombreUsuario);
     }
 
     @Override

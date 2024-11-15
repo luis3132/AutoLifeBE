@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,9 +30,9 @@ public class UsuariosController {
         return ResponseEntity.ok(usuarioService.findByUsuario(dni).get());
     }
 
-    @PostMapping("/new")
-    public ResponseEntity<Usuarios> saveUsuario(@RequestBody UsuarioNuevo usuarioNuevo) {
-        return ResponseEntity.ok(usuarioService.save(usuarioNuevo));
+    @GetMapping("/list/nombreusuario/{nombreUsuario}")
+    public ResponseEntity<Usuarios> findUsuarioByNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
+        return ResponseEntity.ok(usuarioService.findByNombreUsuarioUserData(nombreUsuario).get());
     }
 
     @PutMapping("/update")
