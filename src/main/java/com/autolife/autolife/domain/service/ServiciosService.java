@@ -11,6 +11,7 @@ import com.autolife.autolife.domain.dto.servicios.ServicioEditar;
 import com.autolife.autolife.domain.dto.servicios.ServicioNuevo;
 import com.autolife.autolife.persistence.entity.Servicios;
 import com.autolife.autolife.persistence.entity.TipoServicio;
+import com.autolife.autolife.persistence.entity.Usuarios;
 import com.autolife.autolife.persistence.entity.Vehiculo;
 import com.autolife.autolife.persistence.repository.ServiciosRepository;
 
@@ -28,6 +29,14 @@ public class ServiciosService implements IServiciosService {
 
     @Autowired
     private VehiculosService vehiculosService;
+
+    @Autowired
+    private UsuariosService usuariosService;
+
+    @Override
+    public Optional<Servicios> findById(Long id) {
+        return serviciosRepository.findById(id);
+    }
 
     @Override
     public List<Servicios> saveAll(List<ServicioNuevo> servicios) {
@@ -51,7 +60,7 @@ public class ServiciosService implements IServiciosService {
     @Override
     public Boolean delete(Long id) {
         Optional<Servicios> servicio = serviciosRepository.findById(id);
-        if (servicio.isPresent()) {
+        if (servicio.isPresent() && (servicio.get().getEstado().equals("PENDIENTE") || servicio.get().getEstado().equals("NOACEPTADO"))) {
             serviciosRepository.deleteById(id);
             return true;
         }
@@ -67,6 +76,8 @@ public class ServiciosService implements IServiciosService {
         servicioEditar.setKilometraje(servicio.getKilometraje());
         servicioEditar.setTipoServicio(servicio.getTipoServicio());
         servicioEditar.setVehiculo(servicio.getVehiculo());
+        servicioEditar.setEstado(servicio.getEstado());
+        servicioEditar.setMecanico(servicio.getMecanico());
         return convertDTOtoEntity(servicioEditar);
     }
 
@@ -77,7 +88,9 @@ public class ServiciosService implements IServiciosService {
 
         Optional<Vehiculo> vehiculo = vehiculosService.findByNumSerie(servicioNuevo.getVehiculo());
 
-        if (tipoServicio.isPresent() && vehiculo.isPresent()) {
+        Optional<Usuarios> mecanico = usuariosService.findByUsuario(servicioNuevo.getMecanico());
+
+        if (tipoServicio.isPresent() && vehiculo.isPresent() && mecanico.isPresent()) {
             servicio.setId(servicioNuevo.getId());
             servicio.setDescripcion(servicioNuevo.getDescripcion());
             servicio.setCostoServicio(servicioNuevo.getCostoServicio());
@@ -86,6 +99,7 @@ public class ServiciosService implements IServiciosService {
             servicio.setKilometraje(servicioNuevo.getKilometraje());
             servicio.setVehiculo(vehiculo.get());
             servicio.setTipoServicio(tipoServicio.get());
+            servicio.setMecanico(mecanico.get());
             return servicio;
         }
         return null;

@@ -101,9 +101,12 @@ CREATE TABLE servicios (
 	descripcion varchar(500),
 	kilometraje int not null,
 	vehiculo varchar(30) not null,
+	usuario varchar(20) not null,
+	estado varchar(20) not null,
 	constraint servicios_pk primary key (id),
-	constraint servicios_fk foreign key (tecnico_mecanica) references servicios (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
-	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION
+	constraint servicios_fk foreign key (tipo_servicio) references tipo_servicio (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION,
+	constraint servicion_fk_2 foreign key (usuario) references usuarios (dni) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 CREATE TABLE piezas (
 	id varchar(150) not null,
@@ -129,10 +132,21 @@ CREATE TABLE fotos (
 	constraint fotos_fk_4 foreign key (accidentes) references accidentes (id) ON UPDATE NO ACTION ON DELETE CASCADE,
 	constraint fotos_fk_5 foreign key (usuarios) references usuarios (dni) ON UPDATE NO ACTION ON DELETE CASCADE
 );
-
+CREATE TABLE notificaciones (
+	id BigInt not null auto_increment,
+	texto varchar(500) not null,
+	estado varchar(20) not null,
+	usuario varchar(20) not null,
+	vehiculo varchar(30) not null,
+	servicio BigInt not null,
+	fecha Date not null,
+	constraint notificaciones_pk primary key (id),
+	constraint notificaciones_fk foreign key (usuario) references usuarios (dni) ON UPDATE NO ACTION ON DELETE CASCADE,
+	constraint notificaciones_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE CASCADE,
+	constraint notificaciones_fk_2 foreign key (servicio) references servicios (id) ON UPDATE NO ACTION ON DELETE CASCADE
+);
 
 # ALTER TABLE tipo_vehiculo AUTO_INCREMENT = 5;
-
 
 
 INSERT INTO AutoLife.tipo_servicio (servicio)
@@ -217,10 +231,10 @@ INSERT INTO AutoLife.tipo_vehiculo (nombre, descripcion)
 VALUES('limousine', 'Vehículo de lujo con un compartimento separado para el conductor y pasajeros');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('ADMIN');
+VALUES('Admin');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('USER');
+VALUES('User');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('TALLER');
+VALUES('Taller');
