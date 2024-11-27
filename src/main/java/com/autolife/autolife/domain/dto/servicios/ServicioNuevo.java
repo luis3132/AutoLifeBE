@@ -22,4 +22,6 @@ public class ServicioNuevo {
     private String descripcion;
     private Integer kilometraje;
     private String vehiculo;
+    private String mecanico;
+    private String estado;
 }
