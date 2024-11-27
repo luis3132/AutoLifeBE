@@ -37,8 +37,8 @@ public class Notificaciones {
     private Vehiculo vehiculo;
 
     @ManyToOne
-    @JoinColumn(name = "servicios", referencedColumnName = "id")
-    private Servicios servicios;
+    @JoinColumn(name = "servicio", referencedColumnName = "id")
+    private Servicios servicio;
 
     private Date fecha;
 

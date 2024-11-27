@@ -100,6 +100,7 @@ public class ServiciosService implements IServiciosService {
             servicio.setVehiculo(vehiculo.get());
             servicio.setTipoServicio(tipoServicio.get());
             servicio.setMecanico(mecanico.get());
+            servicio.setEstado(servicioNuevo.getEstado());
             return servicio;
         }
         return null;

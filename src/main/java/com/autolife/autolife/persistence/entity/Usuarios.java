@@ -40,6 +40,8 @@ public class Usuarios {
     @Column(name = "nombre_usuario")
     private String nombreUsuario;
 
+    private String estado;
+
     @OneToMany(mappedBy = "usuarios")
     private List<Fotos> fotos;
 }

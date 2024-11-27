@@ -13,6 +13,7 @@ CREATE TABLE usuarios (
 	contrasena varchar(500) not null,
 	email varchar(150) not null unique,
 	nombre_usuario varchar(20) NOT NULL unique,
+	estado varchar(20),
 	constraint users_pk primary key (dni),
 	constraint users_fk foreign key (roles) references roles (id) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
@@ -102,11 +103,11 @@ CREATE TABLE servicios (
 	kilometraje int not null,
 	vehiculo varchar(30) not null,
 	usuario varchar(20) not null,
-	estado varchar(20) not null,
+	mecanico varchar(20) not null,
 	constraint servicios_pk primary key (id),
 	constraint servicios_fk foreign key (tipo_servicio) references tipo_servicio (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION,
-	constraint servicion_fk_2 foreign key (usuario) references usuarios (dni) ON UPDATE NO ACTION ON DELETE NO ACTION
+	constraint servicion_fk_2 foreign key (mecanico) references usuarios (dni) ON UPDATE NO ACTION ON DELETE NO ACTION
 );
 CREATE TABLE piezas (
 	id varchar(150) not null,
@@ -146,7 +147,7 @@ CREATE TABLE notificaciones (
 	constraint notificaciones_fk_2 foreign key (servicio) references servicios (id) ON UPDATE NO ACTION ON DELETE CASCADE
 );
 
-# ALTER TABLE tipo_vehiculo AUTO_INCREMENT = 5;
+# ALTER TABLE tipo_vehiculo AUTO_INCREMENT = 1;
 
 
 INSERT INTO AutoLife.tipo_servicio (servicio)
@@ -231,10 +232,10 @@ INSERT INTO AutoLife.tipo_vehiculo (nombre, descripcion)
 VALUES('limousine', 'Vehículo de lujo con un compartimento separado para el conductor y pasajeros');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('Admin');
+VALUES('ADMIN');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('User');
+VALUES('USER');
 
 INSERT INTO AutoLife.roles (rol)
-VALUES('Taller');
+VALUES('TALLER');

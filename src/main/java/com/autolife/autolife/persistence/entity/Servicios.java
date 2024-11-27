@@ -47,7 +47,7 @@ public class Servicios {
     private Vehiculo vehiculo;
 
     @ManyToOne
-    @JoinColumn(name = "usuarios", referencedColumnName = "dni")
+    @JoinColumn(name = "mecanico", referencedColumnName = "dni")
     private Usuarios mecanico;
 
     private String estado;

@@ -35,12 +35,26 @@ public class NotificacionesService implements INotificacionesService {
 
     @Override
     public List<Notificaciones> findByUser(String dni) {
-        return notificacionesRepository.findByUser(dni);
+        List<Notificaciones> notificaciones = notificacionesRepository.findByUser(dni);
+        List<Notificaciones> noti = notificaciones.stream().map(notificacion -> {
+            if(notificacion.getEstado().equals("BORRADA")) {
+                return null;
+            }
+            return notificacion;
+        }).toList();
+        return noti;
     }
 
     @Override
     public List<Notificaciones> findByTaller(String dni) {
-        return notificacionesRepository.findByTaller(dni);
+        List<Notificaciones> notificaciones = notificacionesRepository.findByTaller(dni);
+        List<Notificaciones> noti = notificaciones.stream().map(notificacion -> {
+            if(notificacion.getEstado().equals("BORRADA")) {
+                return null;
+            }
+            return notificacion;
+        }).toList();
+        return noti;
     }
 
     @Override
@@ -98,7 +112,7 @@ public class NotificacionesService implements INotificacionesService {
             noti.setFecha(notificacion.getFecha());
             noti.setUsuario(notificacion.getUsuario());
             noti.setVehiculo(vehiculo.get());
-            noti.setServicios(servicio.get());
+            noti.setServicio(servicio.get());
             noti.setTaller(notificacion.getTaller());
 
             return noti;

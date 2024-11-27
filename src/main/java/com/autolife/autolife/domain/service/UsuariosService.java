@@ -23,7 +23,7 @@ import com.autolife.autolife.persistence.repository.UsuariosRepository;
 
 @Service
 public class UsuariosService implements IUsuarioService {
-    
+
     @Autowired
     private UsuariosRepository usuarioRepository;
 
@@ -75,16 +75,16 @@ public class UsuariosService implements IUsuarioService {
         Usuarios user = new Usuarios();
         Optional<Roles> roles = rolesService.findById(usuario.getRoles());
 
-        user.setDni(usuario.getDni());
-        user.setNombre(usuario.getNombre());
-        user.setApellidos(usuario.getApellidos());
-        user.setTelefono(usuario.getTelefono());
-        user.setDireccion(usuario.getDireccion());
-        user.setContrasena(usuario.getContrasena());
-        user.setEmail(usuario.getEmail());
-        user.setNombreUsuario(usuario.getNombreUsuario());
-
         if (roles.isPresent()) {
+            user.setDni(usuario.getDni());
+            user.setNombre(usuario.getNombre());
+            user.setApellidos(usuario.getApellidos());
+            user.setTelefono(usuario.getTelefono());
+            user.setDireccion(usuario.getDireccion());
+            user.setContrasena(usuario.getContrasena());
+            user.setEmail(usuario.getEmail());
+            user.setNombreUsuario(usuario.getNombreUsuario());
+            user.setEstado(usuario.getEstado());
             user.setRoles(roles.get());
             return user;
         }

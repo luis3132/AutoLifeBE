@@ -22,4 +22,5 @@ public class UsuarioNuevo {
     private String contrasena;
     private String email;
     private String nombreUsuario;
+    private String estado;
 }

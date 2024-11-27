@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,11 +31,13 @@ public class NotificacionesController {
     private NotificacionesService notificacionesService;
 
     @GetMapping("/list/usuario/{dni}")
+    @Secured({"USER"})
     public ResponseEntity<List<Notificaciones>> getListByUser(@PathVariable("dni") String dni) {
         return ResponseEntity.ok(notificacionesService.findByUser(dni));
     }
 
     @GetMapping("/list/taller/{dni}")
+    @Secured({"TALLER"})
     public ResponseEntity<List<Notificaciones>> getListByTaller(@PathVariable("dni") String dni) {
         return ResponseEntity.ok(notificacionesService.findByTaller(dni));
     }
