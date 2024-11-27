@@ -141,6 +141,7 @@ CREATE TABLE notificaciones (
 	vehiculo varchar(30) not null,
 	servicio BigInt not null,
 	fecha Date not null,
+	taller varchar(20) not null,
 	constraint notificaciones_pk primary key (id),
 	constraint notificaciones_fk foreign key (usuario) references usuarios (dni) ON UPDATE NO ACTION ON DELETE CASCADE,
 	constraint notificaciones_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE CASCADE,
