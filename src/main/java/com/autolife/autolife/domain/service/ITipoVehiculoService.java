@@ -1,5 +1,6 @@
 package com.autolife.autolife.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import com.autolife.autolife.persistence.entity.TipoVehiculo;
@@ -11,4 +12,5 @@ import com.autolife.autolife.persistence.entity.TipoVehiculo;
 
 public interface ITipoVehiculoService {
     Optional<TipoVehiculo> findById(Integer id);
+    List<TipoVehiculo> findAll();
 }
