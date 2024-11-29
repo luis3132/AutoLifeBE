@@ -1,5 +1,6 @@
 package com.autolife.autolife.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,10 @@ public class TipoVehiculoService implements ITipoVehiculoService {
     @Override
     public Optional<TipoVehiculo> findById(Integer id) {
         return tipoVehiculoRepository.findById(id);
+    }
+
+    @Override
+    public List<TipoVehiculo> findAll() {
+        return tipoVehiculoRepository.findAll();
     }
 }

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.autolife.autolife.domain.dto.VehiculoNuevo;
+import com.autolife.autolife.domain.service.TipoVehiculoService;
 import com.autolife.autolife.domain.service.VehiculosService;
+import com.autolife.autolife.persistence.entity.TipoVehiculo;
 import com.autolife.autolife.persistence.entity.Vehiculo;
 
 /**
@@ -31,9 +33,17 @@ public class VehiculoController {
     @Autowired
     private VehiculosService vehiculosService;
 
+    @Autowired
+    private TipoVehiculoService tipoVehiculoService;
+
     @GetMapping("/list/{dni}")
     public ResponseEntity<List<Vehiculo>> findByUser(@PathVariable("dni") String dni) {
         return ResponseEntity.ok(vehiculosService.findByUser(dni));
+    }
+
+    @GetMapping("/tipovehiculo/list")
+    public ResponseEntity<List<TipoVehiculo>> findTipoVehiculo() {
+        return ResponseEntity.ok(tipoVehiculoService.findAll());
     }
 
     @PostMapping("/new")
