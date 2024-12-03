@@ -106,6 +106,7 @@ CREATE TABLE servicios (
 	vehiculo varchar(30) not null,
 	usuario varchar(20) not null,
 	mecanico varchar(20) not null,
+	estado varchar(20) not null,
 	constraint servicios_pk primary key (id),
 	constraint servicios_fk foreign key (tipo_servicio) references tipo_servicio (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	constraint servicios_fk_1 foreign key (vehiculo) references vehiculo (num_serie) ON UPDATE NO ACTION ON DELETE NO ACTION,

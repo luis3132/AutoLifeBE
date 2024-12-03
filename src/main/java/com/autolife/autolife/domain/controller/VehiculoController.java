@@ -22,6 +22,8 @@ import com.autolife.autolife.domain.service.TipoVehiculoService;
 import com.autolife.autolife.domain.service.VehiculosService;
 import com.autolife.autolife.persistence.entity.TipoVehiculo;
 import com.autolife.autolife.persistence.entity.Vehiculo;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  * 
@@ -49,6 +51,12 @@ public class VehiculoController {
     public ResponseEntity<List<TipoVehiculo>> findTipoVehiculo() {
         return ResponseEntity.ok(tipoVehiculoService.findAll());
     }
+
+    @GetMapping("/list/public")
+    public ResponseEntity<List<Vehiculo>> findPublicVehiculos() {
+        return ResponseEntity.ok(vehiculosService.findPublicVehiculo());
+    }
+    
 
     @PostMapping("/new")
     @Secured({"USER"})

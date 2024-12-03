@@ -16,6 +16,7 @@ public interface IVehiculosService {
     public List<Vehiculo> findAll();
     public Optional<Vehiculo> findByNumSerie(String numSerie);
     public List<Vehiculo> findByUser(String dni);
+    public List<Vehiculo> findPublicVehiculo();
     public Vehiculo save(VehiculoNuevo vehiculos);
     public Vehiculo update(VehiculoNuevo vehiculos);
     public Vehiculo updateDueno(VehiculoCambioDuenoDTO vehiculos);

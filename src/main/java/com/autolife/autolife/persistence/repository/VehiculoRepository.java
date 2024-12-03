@@ -15,4 +15,7 @@ public interface VehiculoRepository extends JpaRepository<Vehiculo, String> {
     
     @Query("SELECT v FROM Vehiculo v WHERE v.usuario = ?1")
     public List<Vehiculo> findByUser(String dni);
+
+    @Query("SELECT v FROM Vehiculo v WHERE v.publico = ?1")
+    public List<Vehiculo> findByPublico(Boolean publico);
 }
