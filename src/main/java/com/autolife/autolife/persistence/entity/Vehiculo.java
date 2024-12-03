@@ -11,6 +11,8 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -49,6 +51,12 @@ public class Vehiculo {
 
     private Boolean publico;
     private String descripcion;
+
+    @Column(name = "fecha_compra")
+    private Date fechaCompra;
+
+    @Column(name = "ciudadpromtransi")
+    private String ciudadPromTransi;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vehiculo")
     private List<Fotos> fotos;

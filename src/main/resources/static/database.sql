@@ -37,6 +37,8 @@ CREATE TABLE vehiculo (
 	ciudad_procedencia varchar(50),
 	publico bool not null,
 	descripcion varchar(300),
+	fecha_compra date not null,
+	ciudadpromtransi varchar(50),
 	constraint vehiculo_pk primary key (num_serie),
 	constraint vehiculo_fk foreign key (tipo_vehiculo) references tipo_vehiculo (id) ON UPDATE NO ACTION ON DELETE NO ACTION,
 	constraint vehiculo_fk_1 foreign key (usuario) references usuarios (dni) ON UPDATE NO ACTION ON DELETE NO ACTION
