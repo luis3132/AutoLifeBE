@@ -52,6 +52,11 @@ public class VehiculosService implements IVehiculosService {
     }
 
     @Override
+    public List<Vehiculo> findPublicVehiculo() {
+        return vehiculosRepository.findByPublico(true);
+    }
+
+    @Override
     public Vehiculo save(VehiculoNuevo vehiculos) {
         DuenoNuevo dueno = createDueno(vehiculos);
         Vehiculo vehiculo = convetDTOtoEntity(vehiculos);
@@ -131,7 +136,7 @@ public class VehiculosService implements IVehiculosService {
         DuenoNuevo dueno = new DuenoNuevo();
         dueno.setVehiculo(vehiculos.getNumSerie());
         dueno.setUsuario(vehiculos.getUsuario());
-        dueno.setKmStart(vehiculos.getKilometraje());
+        dueno.setKmStart(0);
         dueno.setDateStart(vehiculos.getFechaCompra());
         dueno.setCiudadPromTransi(vehiculos.getCiudadPromTransi());
         return dueno;
