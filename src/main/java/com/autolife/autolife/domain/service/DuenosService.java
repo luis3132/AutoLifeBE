@@ -3,6 +3,7 @@ package com.autolife.autolife.domain.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import com.autolife.autolife.domain.dto.DuenoNuevo;
@@ -24,6 +25,7 @@ public class DuenosService implements IDuenosService {
     private DuenosRepository duenosRepository;
 
     @Autowired
+    @Lazy
     private VehiculosService vehiculosService;
 
     @Autowired

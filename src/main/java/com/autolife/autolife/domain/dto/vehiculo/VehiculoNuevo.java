@@ -1,4 +1,6 @@
-package com.autolife.autolife.domain.dto;
+package com.autolife.autolife.domain.dto.vehiculo;
+
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,4 +28,6 @@ public class VehiculoNuevo {
     private String ciudadProcedencia;
     private Boolean publico;
     private String descripcion;
+    private Date fechaCompra;
+    private String ciudadPromTransi;
 }

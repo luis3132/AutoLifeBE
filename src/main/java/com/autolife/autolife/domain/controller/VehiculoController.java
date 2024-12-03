@@ -3,7 +3,9 @@ package com.autolife.autolife.domain.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.autolife.autolife.domain.dto.VehiculoNuevo;
+import com.autolife.autolife.domain.dto.vehiculo.VehiculoCambioDuenoDTO;
+import com.autolife.autolife.domain.dto.vehiculo.VehiculoNuevo;
 import com.autolife.autolife.domain.service.TipoVehiculoService;
 import com.autolife.autolife.domain.service.VehiculosService;
 import com.autolife.autolife.persistence.entity.TipoVehiculo;
@@ -37,6 +40,7 @@ public class VehiculoController {
     private TipoVehiculoService tipoVehiculoService;
 
     @GetMapping("/list/{dni}")
+    @Secured({"USER"})
     public ResponseEntity<List<Vehiculo>> findByUser(@PathVariable("dni") String dni) {
         return ResponseEntity.ok(vehiculosService.findByUser(dni));
     }
@@ -47,6 +51,7 @@ public class VehiculoController {
     }
 
     @PostMapping("/new")
+    @Secured({"USER"})
     public ResponseEntity<Vehiculo> save(@RequestBody VehiculoNuevo vehiculo) {
         return ResponseEntity.ok(vehiculosService.save(vehiculo));
     }
@@ -54,6 +59,17 @@ public class VehiculoController {
     @PutMapping("/update")
     public ResponseEntity<Vehiculo> update(@RequestBody VehiculoNuevo vehiculo) {
         return ResponseEntity.ok(vehiculosService.update(vehiculo));
+    }
+
+    @PostMapping("/update/cambiodueno")
+    @Secured({"USER"})
+    public ResponseEntity<Vehiculo> updateDueno(@RequestBody VehiculoCambioDuenoDTO vehiculo) {
+        Vehiculo veh = vehiculosService.updateDueno(vehiculo);
+        if (veh != null) {
+            return ResponseEntity.ok(veh);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
     @DeleteMapping("/delete/{numSerie}")
