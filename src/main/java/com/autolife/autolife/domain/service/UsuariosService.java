@@ -1,5 +1,6 @@
 package com.autolife.autolife.domain.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -50,6 +51,11 @@ public class UsuariosService implements IUsuarioService {
     @Override
     public Optional<Usuarios> findByNombreUsuarioUserData(String nombreUsuario) {
         return usuarioRepository.findByNombreUsuario(nombreUsuario);
+    }
+
+    @Override
+    public List<Usuarios> findTalleres() {
+        return usuarioRepository.findTalleres();
     }
 
     @Override
