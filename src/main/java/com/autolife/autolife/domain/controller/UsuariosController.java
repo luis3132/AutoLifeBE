@@ -1,5 +1,7 @@
 package com.autolife.autolife.domain.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -33,6 +35,11 @@ public class UsuariosController {
     @GetMapping("/list/nombreusuario/{nombreUsuario}")
     public ResponseEntity<Usuarios> findUsuarioByNombreUsuario(@PathVariable("nombreUsuario") String nombreUsuario) {
         return ResponseEntity.ok(usuarioService.findByNombreUsuarioUserData(nombreUsuario).get());
+    }
+
+    @GetMapping("/list/talleres")
+    public ResponseEntity<List<Usuarios>> findTalleres() {
+        return ResponseEntity.ok(usuarioService.findTalleres());
     }
 
     @PutMapping("/update")
