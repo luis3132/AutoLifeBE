@@ -37,6 +37,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorizeRequests
                     -> authorizeRequests
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/vehiculos/list/public").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager
                         -> sessionManager

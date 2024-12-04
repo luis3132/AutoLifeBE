@@ -1,5 +1,6 @@
 package com.autolife.autolife.domain.service;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.autolife.autolife.domain.dto.notificacion.NotificacionEditarDTO;
 import com.autolife.autolife.domain.dto.notificacion.NotificacionNuevaDTO;
+import com.autolife.autolife.domain.dto.notificacion.NotificacionServicioNuevosDTO;
+import com.autolife.autolife.domain.dto.servicios.ServicioNuevo;
 import com.autolife.autolife.persistence.entity.Notificaciones;
 import com.autolife.autolife.persistence.entity.Servicios;
 import com.autolife.autolife.persistence.entity.Vehiculo;
@@ -55,6 +58,19 @@ public class NotificacionesService implements INotificacionesService {
             return notificacion;
         }).toList();
         return noti;
+    }
+
+    @Override
+    public Boolean saveNyS(NotificacionServicioNuevosDTO notificacion) {
+        NotificacionNuevaDTO noti = notificacion.getNotificacion();
+        List<ServicioNuevo> serv = Arrays.asList(notificacion.getServicio());
+        List<Servicios> servicios = serviciosService.saveAll(serv);
+        if (servicios != null) {
+            noti.setServicio(servicios.get(0).getId());
+            Notificaciones n = save(noti);
+            return n != null;
+        } else
+            return false;
     }
 
     @Override
