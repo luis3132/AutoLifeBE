@@ -56,7 +56,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://visiocuadrado.duckdns.org:3000");
+        corsConfiguration.addAllowedOrigin("http://*.duckdns.org:*");
         corsConfiguration.setAllowedMethods(allowedMethods);
         corsConfiguration.setAllowedHeaders(allowedHeaders);
         corsConfiguration.setAllowCredentials(true);
