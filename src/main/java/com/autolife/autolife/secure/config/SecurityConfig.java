@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -42,6 +43,7 @@ public class SecurityConfig {
                     -> authorizeRequests
                         .requestMatchers("/auth/**").permitAll()
                         .requestMatchers("/api/vehiculos/list/public").permitAll()
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sessionManager
                         -> sessionManager
@@ -54,7 +56,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://visiocuadrado.duckdns.org:3000");
+        corsConfiguration.addAllowedOrigin("http://*.duckdns.org:*");
         corsConfiguration.setAllowedMethods(allowedMethods);
         corsConfiguration.setAllowedHeaders(allowedHeaders);
         corsConfiguration.setAllowCredentials(true);
