@@ -30,8 +30,8 @@ public class SecurityConfig {
 
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authenticationProvider;
-    private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE");
-    private final List<String> allowedHeaders = List.of("Authorization", "Content-Type");
+    private final List<String> allowedMethods = List.of("GET", "POST", "PUT", "DELETE", "OPTIONS");
+    private final List<String> allowedHeaders = List.of("Authorization", "Content-Type", "Accept", "Origin", "X-Requested-With");
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -54,7 +54,7 @@ public class SecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.addAllowedOrigin("http://visiocuadrado.duckdns.org:3000/");
+        corsConfiguration.addAllowedOrigin("http://visiocuadrado.duckdns.org:3000");
         corsConfiguration.setAllowedMethods(allowedMethods);
         corsConfiguration.setAllowedHeaders(allowedHeaders);
         corsConfiguration.setAllowCredentials(true);
