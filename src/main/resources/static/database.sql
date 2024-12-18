@@ -104,7 +104,6 @@ CREATE TABLE servicios (
 	descripcion varchar(500),
 	kilometraje int not null,
 	vehiculo varchar(30) not null,
-	usuario varchar(20) not null,
 	mecanico varchar(20) not null,
 	estado varchar(20) not null,
 	constraint servicios_pk primary key (id),
